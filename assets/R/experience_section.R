@@ -13,7 +13,7 @@ experience_section <- function(xlsx = "data/cv.xlsx", sheet = "experience", page
   #   #replace instances of '.' with the unicode character 	"\n\u2022" except the last instance
   #   open_bullet <- gsub("\\.", ". \n\n\u2022", open_bullet)
   #   
-  #   #remove the last instance inthe string of "\n\u2022"
+  #   #remove the last instance in the string of "\n\u2022"
   #   open_bullet <- stringi::stri_replace_last(open_bullet,
   #                                             replacement = "\\.",
   #                                             regex = ". \n\n\u2022")
