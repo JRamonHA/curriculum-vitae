@@ -20,7 +20,7 @@ contact_section <- function(xlsx = "data/cv.xlsx", sheet = "contact", colour = "
       fontawesome::fa("user", fill = colour), position,
       fontawesome::fa("building-columns", fill = colour), institute,
       fontawesome::fa("map-location-dot", fill = colour), city,
-      fontawesome::fa("envelope", fill = colour), gsub("\\.", "[dot]", sub("@", "[at]", email)), email,
+      fontawesome::fa("envelope", fill = colour), gsub("\\.", "\\.", sub("@", "@", email)), email,
       fontawesome::fa("phone", fill = colour), phone,
       #fontawesome::fa("house", fill = colour), sub("/$", "", sub("https*://", "", website)), website,
       #fontawesome::fa("orcid", fill = colour), orcid, orcid,
