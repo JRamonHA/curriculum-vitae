@@ -3,7 +3,7 @@ params:
   author: "José Ramón Hernández"
   xlsx: "data/cv.xlsx"
   bib: "data/cv.bib"
-  picture: "data/cv.jpg"
+  picture: "data/jrha.jpg"
 title: '`r sprintf("%s - Curriculum Vitæ", params[["author"]])`'
 author: '`r params[["author"]]`'
 output:
