@@ -46,6 +46,7 @@ knitr::include_graphics(params[["picture"]])
 ```{r}
 cat(
   contact_section(xlsx = params[["xlsx"]], sheet = "contact"),
+  soft_skills_section(xlsx = params[["xlsx"]], sheet = "soft"),
   skills_section(xlsx = params[["xlsx"]], sheet = "skills"),
   languages_section(xlsx = params[["xlsx"]], sheet = "languages"),
   title_section(author = params[["author"]]),
