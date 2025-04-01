@@ -1,11 +1,12 @@
 soft_skills_section <- function(xlsx = "data/cv.xlsx", sheet = "soft") {
   text <- read_excel_sheet(xlsx, sheet)[
     j = sprintf(
-      '- <span style="color: var(--main-color);">%s</span>',
+      '- <span style="color: var(--main-color);"><em>%s</em></span>',
       what
     )
   ]
   
-  sprintf("## Soft Skills {#skills}\n\n%s\n\n", paste(text, collapse = "\n"))
+  sprintf("## Soft skills {#skills}\n\n%s\n\n", paste(text, collapse = "\n"))
 }
+
 
