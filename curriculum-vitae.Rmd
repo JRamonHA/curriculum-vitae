@@ -53,7 +53,7 @@ cat(
   profil_section(xlsx = params[["xlsx"]], sheet = "profil"),
   education_section(xlsx = params[["xlsx"]], sheet = "education", page_break_after = FALSE),
   experience_section(xlsx = params[["xlsx"]], sheet = "experience", page_break_after = FALSE),
-  volunteering_section(xlsx = params[["xlsx"]], sheet = "volunteering", page_break_after = FALSE),
+  volunteering_section(xlsx = params[["xlsx"]], sheet = "volunteering", page_break_after = TRUE),
   certificates_section(xlsx = params[["xlsx"]], sheet = "certificates", page_break_after = FALSE),
   #workshop_section(xlsx = params[["xlsx"]], sheet = "workshop", page_break_after = FALSE, colour = "#33333"),
   #awards_section(xlsx = params[["xlsx"]], sheet = "awards", page_break_after = FALSE, colour = "#33333"),
