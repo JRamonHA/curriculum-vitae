@@ -1,45 +1,40 @@
+library(data.table)
+library(stringi)
 
 experience_section <- function(xlsx = "data/cv.xlsx", sheet = "experience", page_break_after = FALSE) {
   
-  #OPTION TO SPLIT ACTIVITIES INTO BULLET POINT LIST
-  # #read text from xlsx
-  # text <- read_excel_sheet(xlsx, sheet)
-  # 
-  # #Put the unicode character 	"\u2022" in front of each test$activities entry and 
-  # text$activities <- sapply(text$activities, function(x) {
-  #   
-  #   open_bullet <- paste0("\u2022 ", x)
-  # 
-  #   #replace instances of '.' with the unicode character 	"\n\u2022" except the last instance
-  #   open_bullet <- gsub("\\.", ". \n\n\u2022", open_bullet)
-  #   
-  #   #remove the last instance in the string of "\n\u2022"
-  #   open_bullet <- stringi::stri_replace_last(open_bullet,
-  #                                             replacement = "\\.",
-  #                                             regex = ". \n\n\u2022")
-  #   })
-  # 
-  # #reformat output with sprintf
-  # text <- text[
-  #   i = .N:1,
-  #   j = sprintf(
-  #     "### %s\n\n%s\n\n%s\n\n%s - %s\n\nActivities: \n\n*%s*\n\n\n\n",
-  #     position, institute, city, start, end, activities
-  #   )
-  # ]
+  # 1. Leemos todo el sheet como data.table
+  dt <- data.table::setDT(read_excel_sheet(xlsx, sheet))
   
-  text <- read_excel_sheet(xlsx, sheet)[
+  # 2. Formateamos `activities` con viñetas tipo "•"
+  dt[, activities_bullets := {
+    raw <- as.character(activities)
+    partes <- unlist(strsplit(raw, "\\.\\s*"))
+    partes <- partes[stringi::stri_trim_both(partes) != ""]
+    
+    # Viñetas con el carácter Unicode • (\u2022)
+    viñetas <- paste0("\u2022 ", stringi::stri_trim_both(partes))
+    
+    # Unimos con doble salto de línea para Markdown
+    paste(viñetas, collapse = "\n\n")
+  }, by = seq_len(nrow(dt))]
+  
+  # 3. Creamos el bloque Markdown con sprintf
+  text <- dt[
     i = .N:1,
     j = sprintf(
-      "### %s\n\n%s\n\n%s\n\n%s - %s\n\nActivities: *%s*\n\n\n\n",
-      position, institute, city, start, end, activities
+      "### %s\n\n%s\n\n%s\n\n%s - %s\n\n**Activities:**\n\n%s\n\n\n\n",
+      position, institute, city, start, end, activities_bullets
     )
   ]
   
-
-  if (page_break_after) {
-    c("## Professional Experience {data-icon=laptop .break-after-me}", text)
+  # 4. Encabezado de sección
+  encabezado <- if (page_break_after) {
+    "## Professional experience {data-icon=laptop .break-after-me}"
   } else {
-    c("## Professional Experience {data-icon=laptop}", text)
+    "## Professional experience {data-icon=laptop}"
   }
+  
+  # 5. Devolver sección completa
+  c(encabezado, text)
 }

@@ -1,9 +1,8 @@
 ---
 params:
-  author: "José Ramón Hernández"
+  author: "José Ramón Hernández Aguilar"
   xlsx: "data/cv.xlsx"
   bib: "data/cv.bib"
-  picture: "data/jrha.jpg"
 title: '`r sprintf("%s - Curriculum Vitæ", params[["author"]])`'
 author: '`r params[["author"]]`'
 output:
@@ -39,11 +38,6 @@ invisible(sapply(
 # Aside
 
 ```{r}
-#| out.extra: 'style="width: 226px;" id="picture"'
-knitr::include_graphics(params[["picture"]])
-```
-
-```{r}
 cat(
   contact_section(xlsx = params[["xlsx"]], sheet = "contact"),
   soft_skills_section(xlsx = params[["xlsx"]], sheet = "soft"),
@@ -53,11 +47,11 @@ cat(
   profil_section(xlsx = params[["xlsx"]], sheet = "profil"),
   education_section(xlsx = params[["xlsx"]], sheet = "education", page_break_after = FALSE),
   experience_section(xlsx = params[["xlsx"]], sheet = "experience", page_break_after = FALSE),
-  volunteering_section(xlsx = params[["xlsx"]], sheet = "volunteering", page_break_after = FALSE),
+  #volunteering_section(xlsx = params[["xlsx"]], sheet = "volunteering", page_break_after = FALSE),
   certificates_section(xlsx = params[["xlsx"]], sheet = "certificates", page_break_after = FALSE),
+  oral_section(xlsx = params[["xlsx"]], sheet = "oral", page_break_after = FALSE, colour = "#33333"),
   #workshop_section(xlsx = params[["xlsx"]], sheet = "workshop", page_break_after = FALSE, colour = "#33333"),
   #awards_section(xlsx = params[["xlsx"]], sheet = "awards", page_break_after = FALSE, colour = "#33333"),
-  oral_section(xlsx = params[["xlsx"]], sheet = "oral", page_break_after = FALSE, colour = "#33333"),
   #poster_section(xlsx = params[["xlsx"]], sheet = "poster", page_break_after = FALSE, colour = "#33333"),
   #packages_section(xlsx = params[["xlsx"]], sheet = "packages", author = params[["author"]], page_break_after = FALSE),
   #articles_section(bib = params[["bib"]], author = params[["author"]], page_break_after = FALSE),

@@ -125,7 +125,7 @@ h1, h2 {
 
 #title h1 {
   font-weight: 700;
-  font-size: 1.8rem;
+  font-size: 1.6rem;
   line-height: 1.5;
   color: var(--main-colour);
 }
@@ -452,4 +452,10 @@ h1, h2 {
   border-color: var(--main-colour);
   border-radius: 50%;
   padding: 5pt;
+}
+
+.two-cols {
+  column-count: 2;
+  column-gap: 1.5em;    /* espacio entre las dos columnas */
+  break-inside: avoid;  /* evita que una entrada se parta entre columnas */
 }
